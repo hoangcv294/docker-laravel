@@ -1,0 +1,41 @@
+version: '3'
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-laravel
+    ports:
+      - "80:80"
+    volumes:
+      - ./source-code:/var/www/html
+    depends_on:
+      - database
+    networks:
+      - network
+  database:
+    image: mysql:8.0
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: chevanhoang
+      MYSQL_USER: hoangcv
+      MYSQL_PASSWORD: 12345
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - network
+
+volumes:
+  db-data:
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+    internal: false
+
