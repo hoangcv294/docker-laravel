@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravel-app
+  template:
+    metadata:
+      labels:
+        app: laravel-app
+    spec:
+      containers:
+      - name: php-laravel
+        image: hoangcv3/docker-laravel-application:tag 
+        ports:
+        - containerPort: 80
+      - name: mysql
+        image: hoangcv3/mysql:tag # Thay bằng hình ảnh Docker của MySQL
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "12345"
+        - name: MYSQL_DATABASE
+          value: "chevanhoang"
+        - name: MYSQL_USER
+          value: "hoangcv"
+        - name: MYSQL_PASSWORD
+          value: "12345"

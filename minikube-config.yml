@@ -1,0 +1,12 @@
+apiVersion: minikube.sigs.k8s.io/v1
+kind: Cluster
+metadata:
+  name: K8s-study
+spec:
+  driver: docker
+  cpus: 4
+  memory: 8192
+  disk-size: 50g
+  extra-config:
+    apiserver.insecure-port: "8080"
+    kubelet.port: "10250"
