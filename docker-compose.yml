@@ -22,7 +22,7 @@ services:
       MYSQL_USER: hoangcv
       MYSQL_PASSWORD: 12345
     ports:
-      - "3306:3306"
+      - "3307:3307"
     volumes:
       - db-data:/var/lib/mysql
     networks:
